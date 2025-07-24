@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"); */
 * {
   margin: 0;
   padding: 0;
@@ -41,7 +41,59 @@ nav {
   margin: 0 auto;
 }
 .bar_icon {
-  font-size: 32px;
+  font-size: 20px;
+}
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+li{
+  list-style: none;
+  display: inline-block;
+  margin: 0 10px;
+}
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: 545;
+  font-size: 16px;
+}
+.nav-links a:hover {
+  color: #149f39;
+  transition: 0.2s ease-in-out;
+}
+.nav-links li {
+  position: relative;
+}
+.nav-links li::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #149f39;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.3s ease;
+}
+.nav-links li:hover::after {
+  width: 100%;
+}
+.nav-links li a {
+  padding: 5px 0;
+}
+.nav-links li a:hover {
+  color: #149f39;
+  transition: 0.2s ease-in-out;
+}
+li:hover{
+  color: #149f39;
+  cursor: pointer;
 }
 
 /* Hero Section */
@@ -71,6 +123,12 @@ nav {
 .explore_btn {
   background: #ffc066;
   align-self: flex-start;
+  font-size:15px;
+}
+.explore_btn:hover {
+  background: #e7a33d;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 /* Features Section */
@@ -222,4 +280,27 @@ footer {
   .footer_container {
     flex-direction: column;
   }
+  .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #333;
+        width: 200px;
+        padding: 10px 0;
+      }
+
+      .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
 }
