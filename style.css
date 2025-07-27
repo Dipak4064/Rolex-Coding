@@ -501,6 +501,158 @@ nav a:hover {
     color: #667eea;
 }
 
+/* Mobile Navigation Toggle */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 8px;
+    background: rgba(103, 92, 230, 0.1);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-toggle:hover {
+    background: rgba(103, 92, 230, 0.2);
+    border-color: rgba(103, 92, 230, 0.3);
+    transform: scale(1.05);
+}
+
+.nav-toggle span {
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    margin: 2px 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-radius: 2px;
+    transform-origin: center;
+}
+
+.nav-toggle.active {
+    background: rgba(103, 92, 230, 0.15);
+    border-color: rgba(103, 92, 230, 0.4);
+    transform: rotate(180deg);
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.98) 100%);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 3rem;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    .nav-links.active {
+        right: 0;
+        animation: slideInRight 0.4s ease-out;
+    }
+
+    .nav-links a {
+        margin: 0.8rem 0;
+        font-size: 1.3rem;
+        padding: 1.2rem 2rem;
+        width: 90%;
+        text-align: center;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(103, 92, 230, 0.2);
+        transition: all 0.3s ease;
+        transform: translateX(50px);
+        opacity: 0;
+        animation: slideInLink 0.5s ease-out forwards;
+        animation-delay: calc(var(--i) * 0.1s);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nav-links a:nth-child(1) { --i: 1; }
+    .nav-links a:nth-child(2) { --i: 2; }
+    .nav-links a:nth-child(3) { --i: 3; }
+    .nav-links a:nth-child(4) { --i: 4; }
+
+    .nav-links a:hover {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 20px rgba(103, 92, 230, 0.3);
+        border-color: transparent;
+    }
+
+    .nav-links a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .nav-links a:hover::before {
+        left: 100%;
+    }
+
+    @keyframes slideInRight {
+        from {
+            right: -100%;
+            opacity: 0;
+        }
+        to {
+            right: 0;
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInLink {
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    nav {
+        padding: 1rem;
+    }
+}
+
 section {
     padding: 4rem 2rem;
     margin: 2rem auto;
